@@ -6,7 +6,7 @@ const db = mongoose.connection
 db.on('error', () => {
     console.log('mongodb error')
 })
-db.onco('open', () => {
+db.once('open', () => {
     console.log('mongodb conneted')
 })
 

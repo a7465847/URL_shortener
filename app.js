@@ -11,11 +11,12 @@ app.set('view engine', 'hbs')
 app.use(bodyparser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
+    console.log('host', req.headers.host)
     res.render('index')
 })
 
 app.post('/', (req, res) => {
-    console.log(req)
+    // console.log(req._parsedUrl)
 })
 
 app.listen(port, () => {
