@@ -20,7 +20,7 @@
           {{!-- 資料庫已有 --}}
           {{#if messageOne}}
           <div class="alert alert-warning mt-3" role="alert">
-            {{messageOne}} <a class="mr-2" href="{{ urllist.originalURL }}" target="_blank" id="copy">{{ urllist.newURL}}</a>
+            {{messageOne}} <a class="mr-2" href="{{ urllist.originalURL }}" target="_blank" id="copy">{{ urllist.newShortURL}}</a>
             <button  class="btn btn-primary m-2" type="button" onclick="copyEvent('copy')">Copy</button>
           </div>
           {{/if}}
@@ -28,7 +28,7 @@
           {{!-- 重新製作給予短網址 --}}
           {{#if messageTwo}}
           <div class="alert alert-warning mt-3" role="alert">
-            {{messageTwo}} <a class="mr-2" href="{{ originalURL }}" target="_blank" id="copy">{{ newURL }}</a>
+            {{messageTwo}} <a class="mr-2" href="{{ originalURL }}" target="_blank" id="copy">{{ newShortURL }}</a>
             <button  class="btn btn-primary m-2" type="button" onclick="copyEvent('copy')">Copy</button>
           </div>
           {{/if}}

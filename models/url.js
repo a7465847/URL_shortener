@@ -6,9 +6,12 @@ const urlSchema = new Schema({
     type: 'string',
     require: true
   },
-  newURL: {
+  random: {
     type: 'string',
     require: true
+  },
+  newShortURL: {
+    type: 'string'
   },
   createdAt: {
     type: Date,
