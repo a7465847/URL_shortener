@@ -1,13 +1,6 @@
 const Url = require('../url')
 const db = require('../../config/mongoose')
 
-const testurl = [
-  {
-    originalURL: 'https://tw.yahoo.com/',
-    newURL: 'http://localhost:3000/w6ff1'
-  },
-]
-
 db.once('open', () => {
   console.log('url mongodb open')
   const testurl = []
