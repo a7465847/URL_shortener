@@ -6,6 +6,13 @@
     <input type="submit" value="Shorten" class="btn btn-outline-primary w-50">
   </div>
 </form>
-{{#if urllist}}
-<a class="mr-2" href="{{urllist.originalURL}}" target="_blank">{{ urllist.newURL }}</i></a>
+{{#if message}}
+<div class="alert alert-warning mt-3" role="alert">
+  {{message}} <a class="mr-2" href="{{ urllist.originalURL }}" target="_blank">{{ urllist.newURL }}</i></a>
+</div>
 {{/if}}
+
+{{#if originalURL}}
+<a class="mr-2" href="{{ originalURL }}" target="_blank">{{ newURL }}</i></a>
+{{/if}}
+
