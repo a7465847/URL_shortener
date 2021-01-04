@@ -14,7 +14,7 @@ router.post('/', async (req, res, next) => {
   const searchOriginalUrl = await URL.exists({ originalURL })
   if (searchOriginalUrl) {
     return res.render('index', {
-      message: '該網址已存在請妥善保管,再次給予您短網址',
+      messageOne: '該網址已存在 請妥善保管,再次給予您短網址',
       urllist
     })
   } else next()
@@ -26,7 +26,11 @@ router.post('/', async (req, res, next) => {
   const newURL = `${baseUrl}/${RandomFive}`
   // 存入資料庫 給予使用者新縮短碼
   await URL.create({ originalURL, newURL })
-    .then(res.render('index', { originalURL, newURL }))
+    .then(res.render('index', {
+      originalURL,
+      newURL,
+      messageTwo: '短網址已為您準備好了,出發吧'
+    }))
 })
 
 module.exports = router
