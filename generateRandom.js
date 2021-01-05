@@ -24,7 +24,7 @@ function generateRandom () {
     random += sample(collection)
   }
 
-  // 返回生成的密碼
+  // 返回產生的亂碼
   return random
 }
 
