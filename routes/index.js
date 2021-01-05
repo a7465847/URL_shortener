@@ -12,9 +12,9 @@ router.post('/', async (req, res, next) => {
   // 先過濾誤按
   if (originalURL === '') return res.redirect('/')
   // 如果資料庫有 直接給短網址不另外製造
-  const urllist = await URL.find({ originalURL: `${originalURL}` }).lean().then(url => url[0])
   const searchOriginalUrl = await URL.exists({ originalURL })
   if (searchOriginalUrl) {
+    const urllist = await URL.find({ originalURL: `${originalURL}` }).lean().then(url => url[0])
     return res.render('index', {
       messageOne: '該網址已存在 請妥善保管,再次給予您短網址',
       urllist
@@ -23,7 +23,12 @@ router.post('/', async (req, res, next) => {
 }, async (req, res) => {
   // 資料庫沒有 製作短網址後五碼
   const originalURL = req.body.originalURL
-  const RandomFive = Random()
+  let RandomFive = Random()
+
+  // 過濾與資料庫重疊後五碼
+  const randomDB = await URL.findOne({ random: RandomFive })
+  if (randomDB) RandomFive = Random()
+
   // 存入資料庫 給予使用者新縮短碼
   await URL.create({
     random: RandomFive,
@@ -39,9 +44,8 @@ router.post('/', async (req, res, next) => {
 
 // 導向原始網頁
 router.get('/:id', async (req, res) => {
-  const url = await URL.find({ random: req.params.id }).lean().then(url => url[0])
-  const originalURL = url.originalURL
-  res.redirect(originalURL)
+  const url = await URL.find({ random: req.params.id }).lean().then(url => url[0].originalURL)
+  res.redirect(url)
 })
 
 module.exports = router
